@@ -1,0 +1,14 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.image.label_tag }} {{ form.image }}
+    {{ form.plant_name.label_tag }} {{ form.plant_name }}
+    <button type="submit">Submit</button>
+</form>
+
+<hr>
+Results: <br>
+{{predicted_class}}
+<hr>
+<br>
+prescription: <br>
+{{prescription|safe}}
