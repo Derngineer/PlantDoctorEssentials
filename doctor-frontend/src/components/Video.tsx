@@ -6,7 +6,7 @@ const Video =()=>{
     return(
         <Fragment>
         <div>
-        <motion.div whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>
+        <motion.div whileHover={{scale: 1.0}} whileTap={{scale: 1}}>
         <video src="/Screen Recording 2023-09-03 at 6.47.18 AM.mp4" autoPlay
         muted
         controls
