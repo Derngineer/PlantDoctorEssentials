@@ -53,7 +53,7 @@ function SignIn() {
             <div className="col-12">
              <div className='col-2'></div>
              <form className="form col-8" style={{color:"white"}}>
-              <img src='src/assets/plant-removebg-preview.png' style={{height:"200px"}}></img>
+              <img src='/plant-removebg-preview.png' style={{height:"200px"}}></img>
              <div>⚠️Only use the following credentials
                 <p>username: Farmer </p>
                 <p>password: 12345 </p>

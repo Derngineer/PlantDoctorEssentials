@@ -5,8 +5,6 @@ import Video from './Video';
 
 function ImageUpload() {
 
- 
-
   const [isCounting, setIsCounting] = useState(false);
 
   const startCounter = () => {
