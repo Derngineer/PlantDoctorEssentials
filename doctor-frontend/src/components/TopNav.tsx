@@ -14,7 +14,7 @@ const TopNav =() =>{
 
 <nav className="navbar navbar-expand-lg navbar-dark fixed-top mb-5">
   <div className="container-fluid">
-    <a className="navbar-brand" href="/home"><img src="src/assets/plant-removebg-preview.png" alt="Banner Image" className="img-fluid" style={{height:"60px",width:"200px", objectFit:"cover"}}/></a>
+    <a className="navbar-brand" href="/home"><img src="/plant-removebg-preview.png" alt="Banner Image" className="img-fluid" style={{height:"60px",width:"200px", objectFit:"cover"}}/></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
