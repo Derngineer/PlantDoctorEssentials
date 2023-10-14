@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import "/Users/mac/myproject_3/env/doctor-frontend/src/TopNav.css"
+import "./TopNav.css"
 
 
 
