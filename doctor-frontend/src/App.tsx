@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import './App.css'
 import TopNav from './components/TopNav'
 import Footer from './components/Footer'
 import ImageUpload from "./components/ImageUpload"
