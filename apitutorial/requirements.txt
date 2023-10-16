@@ -24,6 +24,7 @@ google-auth-oauthlib==1.0.0
 google-pasta==0.2.0
 greenlet==2.0.2
 grpcio==1.57.0
+gunicorn==21.2.0
 h5py==3.9.0
 idna==3.4
 jsonpatch==1.33
