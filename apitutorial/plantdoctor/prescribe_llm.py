@@ -3,7 +3,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 # from bs4 import BeautifulSoup
 
-open_api_key = "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"
+open_api_key = "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"
 
 llm = OpenAI(openai_api_key=open_api_key, temperature = 1)
 

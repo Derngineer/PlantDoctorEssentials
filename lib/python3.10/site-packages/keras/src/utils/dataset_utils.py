@@ -541,9 +541,10 @@ def index_directory(
         subdirs = []
         for subdir in sorted(tf.io.gfile.listdir(directory)):
             if tf.io.gfile.isdir(tf.io.gfile.join(directory, subdir)):
-                if subdir.endswith("/"):
-                    subdir = subdir[:-1]
-                subdirs.append(subdir)
+                if not subdir.startswith("."):
+                    if subdir.endswith("/"):
+                        subdir = subdir[:-1]
+                    subdirs.append(subdir)
         if not class_names:
             class_names = subdirs
         else:
@@ -670,11 +671,13 @@ def get_training_or_validation_split(samples, labels, validation_split, subset):
 
     num_val_samples = int(validation_split * len(samples))
     if subset == "training":
-        print(f"Using {len(samples) - num_val_samples} files for training.")
+        io_utils.print_msg(
+            f"Using {len(samples) - num_val_samples} " f"files for training."
+        )
         samples = samples[:-num_val_samples]
         labels = labels[:-num_val_samples]
     elif subset == "validation":
-        print(f"Using {num_val_samples} files for validation.")
+        io_utils.print_msg(f"Using {num_val_samples} files for validation.")
         samples = samples[-num_val_samples:]
         labels = labels[-num_val_samples:]
     else:

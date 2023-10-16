@@ -8,9 +8,9 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Tuple, Un
 import requests
 from requests import Response
 
-from langchain import LLMChain
 from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.chains.base import Chain
+from langchain.chains.llm import LLMChain
 from langchain.chains.sequential import SequentialChain
 from langchain.chat_models import ChatOpenAI
 from langchain.output_parsers.openai_functions import JsonOutputFunctionsParser
@@ -227,7 +227,7 @@ class SimpleRequestChain(Chain):
             response = (
                 f"{api_response.status_code}: {api_response.reason}"
                 + f"\nFor {name} "
-                + f"Called with args: {args['params']}"
+                + f"Called with args: {args.get('params','')}"
             )
         else:
             try:
@@ -266,6 +266,8 @@ def get_openapi_chain(
             try:
                 spec = conversion(spec)  # type: ignore[arg-type]
                 break
+            except ImportError as e:
+                raise e
             except Exception:  # noqa: E722
                 pass
         if isinstance(spec, str):

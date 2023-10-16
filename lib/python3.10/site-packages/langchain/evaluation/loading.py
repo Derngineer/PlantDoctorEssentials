@@ -14,12 +14,18 @@ from langchain.evaluation.embedding_distance.base import (
     EmbeddingDistanceEvalChain,
     PairwiseEmbeddingDistanceEvalChain,
 )
+from langchain.evaluation.exact_match.base import ExactMatchStringEvaluator
 from langchain.evaluation.parsing.base import (
     JsonEqualityEvaluator,
     JsonValidityEvaluator,
 )
 from langchain.evaluation.qa import ContextQAEvalChain, CotQAEvalChain, QAEvalChain
+from langchain.evaluation.regex_match.base import RegexMatchStringEvaluator
 from langchain.evaluation.schema import EvaluatorType, LLMEvalChain, StringEvaluator
+from langchain.evaluation.scoring.eval_chain import (
+    LabeledScoreStringEvalChain,
+    ScoreStringEvalChain,
+)
 from langchain.evaluation.string_distance.base import (
     PairwiseStringDistanceEvalChain,
     StringDistanceEvalChain,
@@ -68,7 +74,9 @@ _EVALUATOR_MAP: Dict[
     EvaluatorType.COT_QA: CotQAEvalChain,
     EvaluatorType.CONTEXT_QA: ContextQAEvalChain,
     EvaluatorType.PAIRWISE_STRING: PairwiseStringEvalChain,
+    EvaluatorType.SCORE_STRING: ScoreStringEvalChain,
     EvaluatorType.LABELED_PAIRWISE_STRING: LabeledPairwiseStringEvalChain,
+    EvaluatorType.LABELED_SCORE_STRING: LabeledScoreStringEvalChain,
     EvaluatorType.AGENT_TRAJECTORY: TrajectoryEvalChain,
     EvaluatorType.CRITERIA: CriteriaEvalChain,
     EvaluatorType.LABELED_CRITERIA: LabeledCriteriaEvalChain,
@@ -78,6 +86,8 @@ _EVALUATOR_MAP: Dict[
     EvaluatorType.PAIRWISE_EMBEDDING_DISTANCE: PairwiseEmbeddingDistanceEvalChain,
     EvaluatorType.JSON_VALIDITY: JsonValidityEvaluator,
     EvaluatorType.JSON_EQUALITY: JsonEqualityEvaluator,
+    EvaluatorType.REGEX_MATCH: RegexMatchStringEvaluator,
+    EvaluatorType.EXACT_MATCH: ExactMatchStringEvaluator,
 }
 
 
@@ -108,14 +118,23 @@ def load_evaluator(
     >>> from langchain.evaluation import load_evaluator, EvaluatorType
     >>> evaluator = load_evaluator(EvaluatorType.QA)
     """
-    llm = llm or ChatOpenAI(model="gpt-4", temperature=0)
     if evaluator not in _EVALUATOR_MAP:
         raise ValueError(
             f"Unknown evaluator type: {evaluator}"
-            f"Valid types are: {list(_EVALUATOR_MAP.keys())}"
+            f"\nValid types are: {list(_EVALUATOR_MAP.keys())}"
         )
     evaluator_cls = _EVALUATOR_MAP[evaluator]
     if issubclass(evaluator_cls, LLMEvalChain):
+        try:
+            llm = llm or ChatOpenAI(model="gpt-4", temperature=0)
+        except Exception as e:
+            raise ValueError(
+                f"Evaluation with the {evaluator_cls} requires a "
+                "language model to function."
+                " Failed to create the default 'gpt-4' model."
+                " Please manually provide an evaluation LLM"
+                " or check your openai credentials."
+            ) from e
         return evaluator_cls.from_llm(llm=llm, **kwargs)
     else:
         return evaluator_cls(**kwargs)
@@ -154,7 +173,6 @@ def load_evaluators(
     >>> evaluators = [EvaluatorType.QA, EvaluatorType.CRITERIA]
     >>> loaded_evaluators = load_evaluators(evaluators, criteria="helpfulness")
     """
-    llm = llm or ChatOpenAI(model="gpt-4", temperature=0)
     loaded = []
     for evaluator in evaluators:
         _kwargs = config.get(evaluator, {}) if config else {}
