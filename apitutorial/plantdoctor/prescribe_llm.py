@@ -2,8 +2,14 @@ from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 # from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+import os
 
-open_api_key = "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"
+
+load_dotenv ()
+open_api_key = os.getenv("api_key")
+
+
 
 llm = OpenAI(openai_api_key=open_api_key, temperature = 1)
 
