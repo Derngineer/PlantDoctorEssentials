@@ -34,8 +34,8 @@ class PickDiseaseView(APIView):
                 
 
                 classname_model = load_model(plant_name)
-                
-                print(plant_name, plant_name)
+
+                print(plant_name, plant_name, "second check")
 
                 if classname_model:
                     print("model loaded is:", classname_model)
