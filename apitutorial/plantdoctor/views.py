@@ -39,8 +39,10 @@ class PickDiseaseView(APIView):
                 img_array = img_collect_process(path)
 
                 predicted_class =  img_predict_class( classname_model, img_array=img_array)
+                print(predicted_class)
 
                 prescription = create_prescription(plant_name, predicted_class)
+                print(prescription)
                 
                 response_data = {
                     'plant_name': plant_name,
