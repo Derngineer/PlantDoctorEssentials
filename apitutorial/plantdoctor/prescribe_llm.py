@@ -8,6 +8,8 @@ import os
 
 load_dotenv ()
 open_api_key = os.getenv("api_key")
+if open_api_key == None:
+    print("we dont have a working API key")
 
 
 
