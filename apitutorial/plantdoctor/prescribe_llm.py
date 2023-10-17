@@ -59,4 +59,4 @@ def create_prescription(name, disease):
     return prescription
 
 
-print(create_prescription('potato', 'potato_leaf_blight', "thats the printed prescriptionn"))
+# print(create_prescription('potato', 'potato_leaf_blight', "thats the printed prescriptionn"))
