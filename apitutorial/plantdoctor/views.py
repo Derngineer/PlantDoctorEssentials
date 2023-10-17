@@ -81,7 +81,3 @@ def add_data(request):
     else:
         return Response({"error":"form invalid"})
 
-
-
-
-

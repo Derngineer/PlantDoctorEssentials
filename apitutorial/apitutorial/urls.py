@@ -1,14 +1,14 @@
 from django.urls import include, path
 from rest_framework import routers
-from quickstart import views as quickstart_views
+# from quickstart import views as quickstart_views
 from plantdoctor import views as plantdoctor_views
 from plantdoctor.views import PickDiseaseView
 
 
 router = routers.DefaultRouter()
-router.register(r'users', quickstart_views.UserViewSet)
-router.register(r'groups', quickstart_views.GroupViewSet)
-router.register(r'bikes',quickstart_views.BikesViewSet)
+# router.register(r'users', quickstart_views.UserViewSet)
+# router.register(r'groups', quickstart_views.GroupViewSet)
+# router.register(r'bikes',quickstart_views.BikesViewSet)
 
 from django.urls import path
 
