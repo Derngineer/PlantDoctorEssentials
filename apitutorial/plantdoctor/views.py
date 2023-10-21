@@ -27,39 +27,25 @@ class PickDiseaseView(APIView):
             if serializer.is_valid():
                 image = serializer.validated_data['image']
                 plant_name = serializer.validated_data['plant_name']
-                if image:
-                    print("image picked")
                 
-                print(plant_name, plant_name)
-                
+                print(plant_name)
 
                 classname_model = load_model(plant_name)
-
-                print(plant_name, plant_name, "second check")
-
-                if classname_model:
-                    print("model loaded is:", classname_model)
-                else:
-                    print("model not loaded")
+                print("class name mode :", classname_model)
 
                 path_name = default_storage.save(image.name, image)
-
+                
                 path_url = default_storage.path(path_name)
                 path = path_url
-
                 print("here is the path:", path)
-
-                print('random check point, could the issue be path')
-
-                print("here is the path:", path)
-
                 img_array = img_collect_process(path)
+                print('image processing func done', img_array)
 
-                predicted_class =  img_predict_class( classname_model, img_array=img_array)
-                print(predicted_class)
+                predicted_class = img_predict_class(classname_model, img_array=img_array)
+
+                print("img_predict_class loaded ....")
 
                 prescription = create_prescription(plant_name, predicted_class)
-                print(prescription)
                 
                 response_data = {
                     'plant_name': plant_name,
