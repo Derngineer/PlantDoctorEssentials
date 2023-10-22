@@ -1,13 +1,17 @@
 FROM python:3.10
 
-ENV PYTHONUNBUFFERED 1  # Use a colon instead of a period
+ENV PYTHONUNBUFFERED 1 
+
+RUN pip install --upgrade pip
 
 WORKDIR /usr/src/app
 
 COPY requirements.txt .
 
-RUN pip install --upgrade  -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . /usr/src/app/
 
 EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver","0.0.0.0:8000"]
