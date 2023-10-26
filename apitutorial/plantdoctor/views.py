@@ -44,9 +44,14 @@ class PickDiseaseView(APIView):
                 predicted_class = img_predict_class(classname_model, img_array=img_array)
 
                 print("img_predict_class loaded ....")
-
-                prescription = create_prescription(plant_name, predicted_class)
                 
+
+                prescription_openai = create_prescription(plant_name, predicted_class)
+                if prescription_openai:
+                    prescription = prescription_openai
+                prescription= "Could not connect to connect to our LLM for your prescription, this is mostlikely an API key\
+                issue, contact Derby if you want the maximum experience from plant doctor, for now please use the resources \
+                given on top"
                 response_data = {
                     'plant_name': plant_name,
                     # 'serializer': serializer,
