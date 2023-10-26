@@ -12,11 +12,11 @@ RUN pip install -r requirements.txt
 
 COPY . /usr/src/app/
 
-EXPOSE $PORT
+# EXPOSE $PORT
 
-EXPOSE 8500
+# EXPOSE 8500
 
-EXPOSE 8501
+# EXPOSE 8501
 
 COPY ./entrypoint.sh /
 

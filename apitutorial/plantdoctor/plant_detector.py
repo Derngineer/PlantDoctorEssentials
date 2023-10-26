@@ -74,7 +74,7 @@ def img_predict_class(classname_model ,img_array):
 
     img_list = img_array.numpy().tolist()
     print("we went past converion")
-    print("img list", img_list)
+
     
     request_body = {
     "signature_name": "serving_default",
@@ -83,7 +83,7 @@ def img_predict_class(classname_model ,img_array):
     request_json = json.dumps(request_body)    
     request_headers = {"content-type": "application/json"}
     print("diagnose this section")
-    print("response up or down:",requests.get(request_url))
+    print("response up or down:",requests.get(request_url).status_code)
     print('url works')
 
     json_response = requests.post(request_url, data=request_json, headers=request_headers) 
