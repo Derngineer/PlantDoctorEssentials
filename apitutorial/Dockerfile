@@ -14,6 +14,10 @@ COPY . /usr/src/app/
 
 EXPOSE 8000
 
+EXPOSE 8500
+
+EXPOSE 8501
+
 COPY ./entrypoint.sh /
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]
