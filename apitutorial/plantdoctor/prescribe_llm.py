@@ -5,17 +5,24 @@ from langchain.chains import LLMChain
 from dotenv import load_dotenv
 import os
 
+print('THIS FILE IS LOADING FULL TIME')
 
 load_dotenv ()
 open_api_key = os.getenv("api_key")
 if open_api_key == None:
     print("we dont have a working API key")
+else:
+    print("yes key picked", open_api_key)
 
 
 
 llm = OpenAI(openai_api_key=open_api_key, temperature = 1)
 
+print('this file is coming through .....')
+
 def create_prescription(name, disease):
+
+    print('predict function is on')
     name = name
     disease = disease
 
