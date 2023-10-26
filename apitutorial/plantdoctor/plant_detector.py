@@ -83,7 +83,11 @@ def img_predict_class(classname_model ,img_array):
     request_json = json.dumps(request_body)    
     request_headers = {"content-type": "application/json"}
     print("diagnose this section")
+    print("response up or down:",requests.get(request_url))
+    print('url works')
+
     json_response = requests.post(request_url, data=request_json, headers=request_headers) 
+
     print("request was actually sent")
     response_body = json.loads(json_response.text)
     print("response from model up top",response_body)

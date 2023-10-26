@@ -16,8 +16,8 @@ services:
       - tfserving
   tfserving:
     image: tensorflow/serving
-    expose:
-      - 8501
+    ports:
+      - "8501:8501"
     volumes:
       - ./plantdoctor/models_tf:/models/models_tf 
       - ./plantdoctor/models_tf/config:/models/config
