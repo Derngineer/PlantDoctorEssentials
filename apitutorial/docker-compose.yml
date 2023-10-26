@@ -10,8 +10,8 @@ services:
       - ./plantdoctor/.env
 
 
-    expose:
-      - 8000
+    ports:
+      - "$PORT:8000"
 
     depends_on:
       - tfserving
