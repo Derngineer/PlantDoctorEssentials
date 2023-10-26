@@ -10,7 +10,7 @@ services:
       - ./plantdoctor/.env
 
 
-    expose:
+    ports:
       - "$PORT:$PORT"
 
     depends_on:
