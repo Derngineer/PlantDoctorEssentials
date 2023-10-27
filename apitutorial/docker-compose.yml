@@ -8,9 +8,9 @@ services:
       - .:/usr/src/app
     env_file:
       - ./plantdoctor/.env
-      
+
     expose:
-      - $PORT
+      - ${PORT}
 
     depends_on:
       - tfserving
