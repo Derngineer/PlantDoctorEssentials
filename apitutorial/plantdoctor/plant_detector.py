@@ -61,14 +61,12 @@ def img_collect_process(path, target_size =(256,256)):
     return img_array
 
 
-
-
 def img_predict_class(classname_model ,img_array):
     print("we are here in the predict function")
     model_name, class_names = classname_model
     # predictions = current_model.predict(img_array) this uses models and can be ignored
 
-    request_url = f'http://tfserving:8501/v1/models/{model_name}:predict'
+    request_url = f'http://localhost:8501/v1/models/{model_name}:predict'
 
     print('give me the classname:', class_names)
 

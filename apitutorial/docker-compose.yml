@@ -3,13 +3,12 @@ services:
   web:
     image: plant-django-image:0.0.1
     build: .
-    command: python manage.py runserver 0.0.0.0:$PORT
+    # command: python manage.py runserver 0.0.0.0:$PORT
     volumes:
       - .:/usr/src/app
     env_file:
       - ./plantdoctor/.env
-
-
+      
     expose:
       - $PORT
 
@@ -38,5 +37,3 @@ services:
 volumes:
   static:
   
-
-
