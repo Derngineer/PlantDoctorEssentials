@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 
 COPY . /usr/src/app/
 
-# EXPOSE $PORT
+EXPOSE $PORT
 
 # EXPOSE 8500
 
